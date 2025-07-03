@@ -15,6 +15,7 @@ func InitUser() User {
 	}
 }
 
+// Проверка хода выполнения квеста пользователем
 func (u User) CheckQuest(q quests.Quest) bool {
 	for _, qItem := range q.Need {
 		check := false
@@ -30,6 +31,7 @@ func (u User) CheckQuest(q quests.Quest) bool {
 	return true
 }
 
+// Проверка наличия предмета у пользователя
 func (u User) FindItem(item string) bool {
 	for _, thing := range u.Inventory {
 		if thing == item {

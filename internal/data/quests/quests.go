@@ -6,6 +6,7 @@ type Quest struct {
 	QuestNum int
 }
 
+// Описание всех квестов в игре
 var allQuests = []Quest{
 	{
 		Text:     "надо собрать рюкзак и идти в универ. ",
@@ -19,6 +20,7 @@ var allQuests = []Quest{
 	},
 }
 
+// Продвижение по квестам
 func (q *Quest) ChangeQuest() {
 	*q = allQuests[q.QuestNum+1]
 }

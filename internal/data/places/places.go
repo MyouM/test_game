@@ -4,8 +4,10 @@ import (
 	"slices"
 )
 
+// Тип, содержащий данные о названии территории и её содержаниии
 type Places map[string]Env
 
+// Тип, содержащий данные о блокировке территории
 type Lock struct {
 	Locked       bool
 	UnlockItem   string
@@ -14,6 +16,7 @@ type Lock struct {
 	Barrier      string
 }
 
+// Тип, описывающий отдельные территории
 type Env struct {
 	Objects     []Object
 	Enter       []string
@@ -53,6 +56,7 @@ func FromGlobToRoom(plc string) string {
 	return globalPlaces[plc]
 }
 
+// Изничинльное описание мира игры
 func InitPlaces() Places {
 	return Places{
 		"кухня": Env{
@@ -106,6 +110,7 @@ func InitPlaces() Places {
 	}
 }
 
+// Проверка наличия предметов на определённом участке территории
 func (e Env) CheckItems(i int) bool {
 	check := false
 	if i >= len(e.Objects) {
@@ -119,10 +124,12 @@ func (e Env) CheckItems(i int) bool {
 	return check
 }
 
+// Разблокировка территории
 func (e Env) UnlockBarrier() {
 	e.Lock.Locked = false
 }
 
+// Проверка, является ли указанный объект блокировщиком территории
 func (e Env) IsBarrier(brr string) bool {
 	if brr == e.Lock.Barrier {
 		return true
@@ -130,6 +137,7 @@ func (e Env) IsBarrier(brr string) bool {
 	return false
 }
 
+// Проверка наличия прохода на территории
 func (e Env) FindEnter(plc string) bool {
 	for _, etr := range e.Enter {
 		if plc == etr {
@@ -139,6 +147,7 @@ func (e Env) FindEnter(plc string) bool {
 	return false
 }
 
+// Проверка наличия определённого предмента на объекте
 func (e Env) FindItem(item string) bool {
 	for _, obj := range e.Objects {
 		for _, thing := range obj.Items {
@@ -150,6 +159,7 @@ func (e Env) FindItem(item string) bool {
 	return false
 }
 
+// Удаление предмета с объекта
 func (e Env) DeleteItem(item string) {
 	for i, obj := range e.Objects {
 		for j, thing := range obj.Items {

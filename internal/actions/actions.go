@@ -17,6 +17,8 @@ func InitGameData() *GameData {
 	}
 }
 
+// Обработчик пользовательских запросов, перенаправляющий к заданым функциям и
+// следящий за продвижением квестов
 func (d *GameData) Actions(cmnds []string) string {
 	if len(cmnds) < 1 {
 		return "введите команду"
@@ -41,6 +43,7 @@ func (d *GameData) Actions(cmnds []string) string {
 	return ""
 }
 
+// Функция для команды "применить"
 func (d *GameData) Use(cmnds []string) string {
 	if len(cmnds) < 2 {
 		return "а что применить?"
@@ -63,6 +66,7 @@ func (d *GameData) Use(cmnds []string) string {
 	return "не к чему применить"
 }
 
+// Функция для команды "идти"
 func (d *GameData) Move(cmnds []string) string {
 	if len(cmnds) < 2 {
 		return "а куда идти?"
@@ -89,6 +93,7 @@ func (d *GameData) Move(cmnds []string) string {
 	return answer.String()
 }
 
+// Функция для команды "осмотреться"
 func (d *GameData) LookAround(cmnds []string) string {
 	var (
 		answer   strings.Builder
@@ -136,6 +141,7 @@ func (d *GameData) LookAround(cmnds []string) string {
 	return answer.String()
 }
 
+// Функция для команды "взять"
 func (d *GameData) Take(cmnds []string) string {
 	if len(cmnds) < 2 {
 		return "а что взять?"
@@ -151,6 +157,7 @@ func (d *GameData) Take(cmnds []string) string {
 	return "предмет добавлен в инвентарь: " + cmnds[1]
 }
 
+// Функция для команды "надеть"
 func (d *GameData) Wear(cmnds []string) string {
 	if len(cmnds) < 2 {
 		return "а что надеть?"

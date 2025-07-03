@@ -6,6 +6,7 @@ import (
 	"test_game/internal/data/user"
 )
 
+// Тип для хранение информации и пользователе и мире игры
 type Data struct {
 	Places places.Places
 	User   user.User
